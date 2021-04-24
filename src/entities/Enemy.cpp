@@ -3,7 +3,7 @@
 
 Enemy::Enemy(b2World *world){
 	if(!enemyTex.loadFromFile("assets/img/tank_enemy.png")){
-		std::cerr<<"ERROR: no se encontro la textura: assets/img/tank_enemy.png"<<std::endl;
+		std::cerr<<"ERROR: can't find texture: assets/img/tank_enemy.png"<<std::endl;
 	}
 	getSprite().setTexture(enemyTex);
 	createBody(world, Entity::DYNAMIC);
@@ -18,7 +18,6 @@ Enemy::Enemy(b2World *world){
 
 
 void Enemy::update(float elapsed){
-	// posiciona el sprite en el lugar del cuerpo (lo hacemos acá para no alterar el angulo segun el cuerpo)
 	b2Vec2 bodyPos = getBody()->GetPosition();
 	getSprite().setPosition(sf::Vector2f(bodyPos.x, bodyPos.y));
 	
@@ -28,6 +27,7 @@ void Enemy::update(float elapsed){
 		changeDir();
 	}
 }
+
 
 void Enemy::changeDir(){
 	unsigned newDir = rand()%5;

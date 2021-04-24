@@ -1,20 +1,19 @@
-#include "Player.hpp"
-#include "BaseScene.hpp"
+#include "core/BaseScene.hpp"
+#include "entities/Player.hpp"
+#include "entities/Bullet.hpp"
 #include <iostream>
 #include <SFML/Window/Keyboard.hpp>
-#include "Bullet.hpp"
+
 using namespace std;
 Player::Player(b2World *world) {
 	if(!playerTex.loadFromFile("assets/img/tank.png")){
-		cerr<<"ERROR: no se encontro la textura: assets/img/tank.png"<<endl;
+		cerr<<"ERROR: can't find texture: assets/img/tank.png"<<endl;
 	}
 	getSprite().setTexture(playerTex);
-	
 	
 	createBody(world, Entity::DYNAMIC);
 	setBodyShapeAsRect(sf::Vector2f(4, 4));
 	getBody()->SetFixedRotation(true);
-	
 	
 	scaleSpriteToBodySize();
 	shootClock.restart();
@@ -22,7 +21,6 @@ Player::Player(b2World *world) {
 
 
 void Player::update(float elapsed){
-	// posiciona el sprite en el lugar del cuerpo (lo hacemos acá para no alterar el angulo segun el cuerpo)
 	b2Vec2 bodyPos = getBody()->GetPosition();
 	getSprite().setPosition(sf::Vector2f(bodyPos.x, bodyPos.y));
 	
@@ -51,6 +49,7 @@ void Player::update(float elapsed){
 bool Player::canShoot() const {
 	return shootClock.getElapsedTime().asSeconds()>=0.5;
 }
+
 
 void Player::shoot(){
 	getScene()->addEntity(new Bullet(this));

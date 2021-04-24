@@ -1,7 +1,7 @@
 #ifndef WALL_HPP
 #define WALL_HPP
 #include <SFML/Graphics/Texture.hpp>
-#include "Entity.hpp"
+#include "core/Entity.hpp"
 
 class Wall: public Entity {
 	static sf::Texture texWall;

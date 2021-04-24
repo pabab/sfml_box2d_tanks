@@ -5,10 +5,12 @@
 
 std::vector<b2Body *> Entity::toDestroy;
 
+
 Entity::Entity() {
 	body = nullptr;
 	alive = true;
 }
+
 
 Entity::~Entity() {
 	if(body){
@@ -16,9 +18,9 @@ Entity::~Entity() {
 	}
 }
 
+
 void Entity::update(float elapsed){
 	if(body){
-		// si hay un cuerpo, entonces actualizamos la posicion del sprite según el cuerpo
 		b2Vec2 bodyPos = body->GetPosition();
 		sprite.setPosition(sf::Vector2f(bodyPos.x, bodyPos.y));
 		sprite.setRotation(body->GetAngle()*360/6.283185307179586);
@@ -90,6 +92,7 @@ void Entity::draw(sf::RenderWindow &w) {
 BaseScene *Entity::getScene(){
 	return scene;
 }
+
 
 void Entity::setScene(BaseScene *s){
 	scene = s;

@@ -1,11 +1,12 @@
-#include "PlayScene.hpp"
 #include <SFML/Graphics/Sprite.hpp>
 #include <iostream>
 #include <sstream>
+#include "core/Game.hpp"
+#include "entities/Enemy.hpp"
+#include "scenes/PlayScene.hpp"
+#include "scenes/MenuScene.hpp"
 #include "Global.hpp"
-#include "MenuScene.hpp"
-#include "Game.hpp"
-#include "Enemy.hpp"
+
 using namespace std;
 
 void onCollisionBulletWall(Entity *bullet, Entity *wall){
@@ -22,7 +23,6 @@ PlayScene::PlayScene(){
 	player->getBody()->SetTransform({50, 50}, 0);
 	addEntity(player);
 	
-	// crear las paredes
 	addEntity(new Wall(getWorld(), sf::Vector2f(4, 48), sf::Vector2u(1, 12)));
 	addEntity(new Wall(getWorld(), sf::Vector2f(156, 48), sf::Vector2u(1, 12)));
 	addEntity(new Wall(getWorld(), sf::Vector2f(80, 4), sf::Vector2u(18, 1)));
@@ -31,11 +31,10 @@ PlayScene::PlayScene(){
 	addEntity(new Wall(getWorld(), sf::Vector2f(40, 48), sf::Vector2u(2, 2)));
 	addEntity(new Wall(getWorld(), sf::Vector2f(120, 48), sf::Vector2u(2, 2)));
 	
-	
-	// registra callbacks de colision
 	getCollisionManager().addCollisionCallback("bullet", "wall", onCollisionBulletWall);
 	getCollisionManager().addCollisionCallback("bullet", "enemy", onCollisionBulletEnemy);
 }
+
 
 void PlayScene::processEvents(sf::Window &w){
 	BaseScene::processEvents(w);
@@ -52,6 +51,7 @@ void PlayScene::update(float elapsed){
 		addEntity(enemy);
 	}
 }
+
 
 void PlayScene::draw(sf::RenderWindow &w){
 	setViewScale(w, 0.25);

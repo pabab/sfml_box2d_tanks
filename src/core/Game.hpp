@@ -7,20 +7,20 @@ using namespace std;
 
 
 /***
- * Clase para manejar un bucle de juego con distintas escenas
+ * Manage a general game loop with multiple scenes
  */
 class Game {
 public:
-	/// comenzar el bucle de juego
+	/// start game loop
 	void run();
 	
-	/// cambiar la escena actual por otra 
+	/// change from current scene to a new one
 	void switchScene(BaseScene *scene);
 	
-	/// obtener la instancia de juego (singleton)
+	/// get game instance
 	static Game &getInstance();
 	
-	/// crear un juego especificando el modo de video y la escena inicial
+	/// create a new game by specifying video mode and initial scene
 	static Game &create(const sf::VideoMode &videoMode, BaseScene *scene, const string &name = "");
 
 private:	

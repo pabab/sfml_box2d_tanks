@@ -2,7 +2,7 @@
 #define PLAYER_HPP
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
-#include "Entity.hpp"
+#include "core/Entity.hpp"
 #include <SFML/System/Clock.hpp>
 
 class Player : public Entity {

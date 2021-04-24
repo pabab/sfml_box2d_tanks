@@ -7,6 +7,7 @@ fPhysicsDebugDraw::fPhysicsDebugDraw(){
     alpha = 200;
 }
 
+
 void fPhysicsDebugDraw::DrawPolygon (const b2Vec2 *vertices, int32 vertexCount, const b2Color &color){
     b2Vec2 center;
     center.Set(0, 0);
@@ -18,12 +19,12 @@ void fPhysicsDebugDraw::DrawPolygon (const b2Vec2 *vertices, int32 vertexCount, 
         center.x+=vertices[i].x;
         center.y+=vertices[i].y;
     }
-    //va_vertices[vertexCount-1] = va_vertices[0];
     va_vertices[vertexCount-1].color = sf::Color(color.r*255, color.g*255, color.b*255, alpha);
     va_vertices[vertexCount-1].position.x = center.x/vertexCount;
     va_vertices[vertexCount-1].position.y = center.y/vertexCount;
     vertexArrays.push_back(va_vertices);
 }
+
 
 void fPhysicsDebugDraw::DrawSolidPolygon (const b2Vec2 *vertices, int32 vertexCount, const b2Color &color){
     sf::VertexArray va_vertices(sf::TrianglesFan, vertexCount+1);
@@ -39,6 +40,7 @@ void fPhysicsDebugDraw::DrawSolidPolygon (const b2Vec2 *vertices, int32 vertexCo
     DrawPolygon(vertices, vertexCount, color);
 }
 
+
 void fPhysicsDebugDraw::DrawCircle (const b2Vec2 &center, float32 radius, const b2Color &color){
     const int nDivisions = 16;
     sf::VertexArray va_vertices(sf::LinesStrip, nDivisions+1);
@@ -51,6 +53,7 @@ void fPhysicsDebugDraw::DrawCircle (const b2Vec2 &center, float32 radius, const 
     va_vertices[nDivisions] = va_vertices[0];
     vertexArrays.push_back(va_vertices);
 }
+
 
 void fPhysicsDebugDraw::DrawSolidCircle (const b2Vec2 &center, float32 radius, const b2Vec2 &axis, const b2Color &color){
     const int nDivisions = 16;
@@ -80,6 +83,7 @@ void fPhysicsDebugDraw::DrawSolidCircle (const b2Vec2 &center, float32 radius, c
     DrawCircle(center, radius, color);
 }
 
+
 void fPhysicsDebugDraw::DrawSegment (const b2Vec2 &p1, const b2Vec2 &p2, const b2Color &color){
     sf::VertexArray va_vertices(sf::Lines, 2);
     va_vertices[0].color = sf::Color(color.r*255, color.g*255, color.b*255, alpha);
@@ -91,13 +95,16 @@ void fPhysicsDebugDraw::DrawSegment (const b2Vec2 &p1, const b2Vec2 &p2, const b
     vertexArrays.push_back(va_vertices);
 }
 
+
 void fPhysicsDebugDraw::DrawTransform (const b2Transform &xf){
 
 }
 
+
 const std::vector<sf::VertexArray> &fPhysicsDebugDraw::getVertexArrays() const{
     return vertexArrays;
 }
+
 
 void fPhysicsDebugDraw::clearVertexArrays(){
     vertexArrays.clear();

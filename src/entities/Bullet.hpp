@@ -1,7 +1,7 @@
 #ifndef BULLET_H
 #define BULLET_H
-#include "Entity.hpp"
-#include "Player.hpp"
+#include "core/Entity.hpp"
+#include "entities/Player.hpp"
 
 class Bullet: public Entity {
 	float timeAlive;

@@ -29,6 +29,7 @@ Game &Game::getInstance(){
 	return *instance;
 }
 
+
 void Game::run(){
 	while(window.isOpen() && currentScene != nullptr) {
 		processEvents();
@@ -59,6 +60,7 @@ void Game::draw(){
 	currentScene->draw(window);
 	window.display();
 }
+
 
 void Game::switchScene(BaseScene *scene){
 	nextScene = scene;

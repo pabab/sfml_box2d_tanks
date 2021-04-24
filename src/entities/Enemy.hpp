@@ -1,6 +1,6 @@
 #ifndef ENEMY_HPP
 #define ENEMY_HPP
-#include "fich/include/Entity.hpp"
+#include "core/Entity.hpp"
 #include <SFML/Graphics/Texture.hpp>
 
 class Enemy : public Entity {

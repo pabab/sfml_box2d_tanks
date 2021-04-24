@@ -1,5 +1,6 @@
 #ifndef COLLISIONMANAGER_H
 #define COLLISIONMANAGER_H
+#include <functional>
 #include <Box2D/Box2D.h>
 #include <map>
 #include "Entity.hpp"
@@ -12,9 +13,9 @@ class CollisionManager : public b2ContactListener {
 	
 public:
 	/**
-	 * Permite registrar una función que será invocada cuando colisiones objetos de tipo entityTypeA y entityTypeB
-	 * Las entidades deberían redefinir el método getType() para devolver una cadena con el tipo correspondiente
-	 * Tener en cuenta que la función callback recibirá 2 punteros de tipo Entity, pero que se pueden castear a los tipos correspondientes
+	 * Registrar callback that will be fired when object with types entityTypeA and entityTypeB collide
+	 * Entities should refedine getType() method in order for this to work
+	 * Collision callback will be passed 2 Entity * objects that probably will need to be casted to proper types
 	 */
 	void addCollisionCallback(const std::string &entityTypeA, const std::string &entityTypeB, std::function<void(Entity *, Entity *)> callback);
 };

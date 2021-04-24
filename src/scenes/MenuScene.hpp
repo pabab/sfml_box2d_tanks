@@ -1,6 +1,6 @@
 #ifndef MENUSCENE_HPP
 #define MENUSCENE_HPP
-#include "BaseScene.hpp"
+#include "core/BaseScene.hpp"
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/Text.hpp>
 
